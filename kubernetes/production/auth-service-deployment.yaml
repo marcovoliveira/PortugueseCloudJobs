@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: auth-service
+  template:
+    metadata:
+      labels:
+        name: auth-service
+    spec:
+      containers:
+      - env:
+        - name: SERVICE_DB_HOSTNAME
+          value: cloudjobs-database
+        image: gcr.io/cloudjobs/cloudjobs-auth-service:1.09
+        imagePullPolicy: IfNotPresent
+        name: auth-service
+        ports:
+        - containerPort: 10000
+        resources: {}
+      restartPolicy: Always

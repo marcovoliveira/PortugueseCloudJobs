@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: keywords-service
+  name: keywords-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: keywords-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 ()
+      creationTimestamp: null
+      labels:
+        io.kompose.service: keywords-service
+    spec:
+      containers:
+      - env:
+        - name: SERVICE_DB_HOSTNAME
+          value: cloudjobs_database
+        image: cloudjobs-keywords-service
+        imagePullPolicy: "Never"
+        name: keywords-service
+        ports:
+        - containerPort: 10003
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/app/src
+          name: keywords-service-claim0
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: keywords-service-claim0
+        persistentVolumeClaim:
+          claimName: keywords-service-claim0
+status: {}

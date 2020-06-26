@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: keywords-service
+  name: keywords-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: keywords-service
+  template:
+    metadata:
+      labels:
+        name: keywords-service
+    spec:
+      containers:
+      - env:
+        - name: SERVICE_DB_HOSTNAME
+          value: cloudjobs-database
+        image: gcr.io/cloudjobs/cloudjobs-keywords-service:1.09
+        imagePullPolicy: IfNotPresent
+        name: keywords-service
+        ports:
+        - containerPort: 10003
+        resources: {}
+      restartPolicy: Always

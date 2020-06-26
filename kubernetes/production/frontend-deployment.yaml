@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: cloudjobs-frontend
+    project: cloudjobs
+  name: cloudjobs-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: cloudjobs-frontend
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-frontend
+    spec:
+      containers:
+      - image: gcr.io/cloudjobs/cloudjobs-frontend:1.09
+        imagePullPolicy: IfNotPresent
+        name: cloudjobs-frontend
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always

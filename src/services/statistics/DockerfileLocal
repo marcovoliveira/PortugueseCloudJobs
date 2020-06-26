@@ -1,0 +1,21 @@
+FROM node
+
+RUN mkdir /var/app
+
+RUN mkdir /var/app/src
+
+WORKDIR /var/app
+
+COPY package.json ./
+
+RUN npm install
+
+#RUN npm install -g nodemon
+
+COPY . ./src
+
+EXPOSE 10004
+
+# docker run
+
+CMD ["node", "src/index.js"]

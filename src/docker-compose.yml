@@ -1,0 +1,83 @@
+---
+version: "3"
+services:
+  cloudjobs_database:
+    image: mongo
+  frontend:
+    image: cloudjobs-frontend-local
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+  auth_service:
+    image: cloudjobs-auth-service-local
+    build:
+      context: ./services/auth
+      dockerfile: DockerfileLocal
+    volumes:
+      - ./services/auth:/var/app/src
+    ports:
+      - "10000:10000"
+    depends_on:
+      - "cloudjobs_database"
+    environment:
+      - SERVICE_DB_HOSTNAME=cloudjobs_database
+  search_service:
+    image: cloudjobs-search-service-local
+    build:
+      context: ./services/search
+      dockerfile: DockerfileLocal
+    volumes:
+      - ./services/search:/var/app/src
+    ports:
+      - "10001:10001"
+    depends_on:
+      - "cloudjobs_database"
+    environment:
+      - ITJOBS_KEY=
+      - IT_JOBS_URL=http://api.itjobs.pt  
+      - SERVICE_DB_HOSTNAME=cloudjobs_database
+  agenda_service:
+    image: cloudjobs-agenda-service-local
+    build:
+      context: ./services/agenda
+      dockerfile: DockerfileLocal
+    volumes:
+      - ./services/agenda:/var/app/src
+    ports:
+      - "10002:10002"
+    depends_on:
+      - "cloudjobs_database"
+    environment:
+      - ITJOBS_KEY=
+      - IT_JOBS_URL=http://api.itjobs.pt  
+      - SERVICE_DB_HOSTNAME=cloudjobs_database
+  keywords_service:
+    image: cloudjobs-keywords-service-local
+    build:
+      context: ./services/keywords
+      dockerfile: DockerfileLocal
+    volumes:
+      - ./services/keywords:/var/app/src
+    ports:
+      - "10003:10003"
+    depends_on:
+      - "cloudjobs_database"
+    environment:
+      - SERVICE_DB_HOSTNAME=cloudjobs_database
+  statistics_service:
+    image: cloudjobs-statistics-service-local
+    build:
+      context: ./services/statistics
+      dockerfile: DockerfileLocal
+    volumes:
+      - ./services/statistics:/var/app/src
+    ports:
+      - "10004:10004"
+    depends_on:
+      - "cloudjobs_database"
+    environment:
+      - SERVICE_DB_HOSTNAME=cloudjobs_database

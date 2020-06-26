@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: statistics-service
+  name: statistics-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: statistics-service
+  template:
+    metadata:
+      labels:
+        name: statistics-service
+    spec:
+      containers:
+      - env:
+        - name: SERVICE_DB_HOSTNAME
+          value: cloudjobs-database
+        image: gcr.io/cloudjobs/cloudjobs-statistics-service:1.09
+        imagePullPolicy: IfNotPresent
+        name: statistics-service
+        ports:
+        - containerPort: 10004
+        resources: {}
+      restartPolicy: Always

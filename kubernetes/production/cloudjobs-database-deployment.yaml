@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudjobs-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: cloudjobs-database
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-database
+    spec:
+      containers:
+      - image: mongo
+        imagePullPolicy: Always
+        name: cloudjobs-database
+        resources: {}
+      restartPolicy: Always

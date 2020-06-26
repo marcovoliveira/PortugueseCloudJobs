@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: search-service
+  name: search-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: search-service
+  template:
+    metadata:
+      labels:
+        name: search-service
+    spec:
+      containers:
+      - env:
+        - name: ITJOBS_KEY
+          value: 
+        - name: IT_JOBS_URL
+          value: http://api.itjobs.pt
+        - name: SERVICE_DB_HOSTNAME
+          value: cloudjobs-database
+        image: gcr.io/cloudjobs/cloudjobs-search-service:1.09
+        imagePullPolicy: IfNotPresent
+        name: search-service
+        ports:
+        - containerPort: 10001
+        resources: {}
+      restartPolicy: Always

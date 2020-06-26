@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    project: cloudjobs
+  name: agenda-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: agenda-service
+  template:
+    metadata:
+      labels:
+        project: cloudjobs
+        name: agenda-service
+    spec:
+      containers:
+      - name: agenda-service
+        env:
+        - name: ITJOBS_KEY
+          value: 
+        - name: IT_JOBS_URL
+          value: http://api.itjobs.pt
+        - name: SERVICE_DB_HOSTNAME
+          value: cloudjobs-database
+        image: gcr.io/cloudjobs/cloudjobs-agenda-service:1.09
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 10002
+        resources: {}
+      restartPolicy: Always

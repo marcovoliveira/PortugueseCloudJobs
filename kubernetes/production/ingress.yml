@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1 # for versions before 1.14 use extensions/v1beta1
+kind: Ingress
+metadata:
+  name: meicm-ingress
+spec:
+  rules:
+    - host: cloudjobs.meicm
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: cloudjobs-frontend
+              servicePort: 8080
+          

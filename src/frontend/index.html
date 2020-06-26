@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="/vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/main.css">
+
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Cloud Jobs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="search.html">Search</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="data_gatherer.html">Data Gatherer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Auth</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content" class="dashboard container">
+        <div class="box jobs">
+          <h2>Cloud Jobs</h2>
+          <div></div>
+        </div>
+        <div class="box growth">
+          <h2>Growth</h2>
+          <div>Day: <span></span>%</div>
+          <div>Week: <span></span>%</div>
+          <div>Month: <span></span>%</div>
+        </div>
+        <div class="box total_chart">
+          <canvas id="total_chart"></canvas>
+        </div>
+        <div class="box keywords">
+          <canvas id="keywords-chart"></canvas>
+        </div>
+        <div class="box daily">
+          <h2>Today</h2>
+          <div>New: <span></span></div>
+          <div>Closed: <span></span></div>
+        </div>
+        <div class="box weekly">
+          <h2>Week</h2>
+          <div>New: <span></span></div>
+          <div>Closed: <span></span></div>
+        </div>
+        <div class="box monthly">
+          <h2>Month</h2>
+          <div>New: <span></span></div>
+          <div>Closed: <span></span></div>
+        </div>
+      </div>
+      <div class="footer">
+        <h3>Powered by:</h2>
+        <div>
+          <a href="https://itjobs.pt"><img src='https://static.itjobs.pt/images/logo.png'></a>
+        </div>
+      </div>
+    </div>
+    <script src="/vendor/jquery/jquery-3.5.1.slim.min.js" ></script>
+    <script src="/vendor/bootstrap-4.5.0-dist/js/bootstrap.min.js" ></script>
+    <script src="/vendor/axios/axios.min.js" ></script>
+    <script src="/vendor/moment/moment.min.js" ></script>
+    <script src="/vendor/charts/chart.min.js" ></script>
+    <script src="js/main.js"> </script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

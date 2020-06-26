@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: agenda-service
+spec:
+  ports:
+   - port: 10002
+     targetPort: 10002
+  selector:
+    name: agenda-service
+  type: ClusterIP

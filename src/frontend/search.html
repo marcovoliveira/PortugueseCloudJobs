@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="/vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/main.css">
+
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Cloud Jobs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="search.html">Search</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="data_gatherer.html">Data Gatherer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Auth</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div id="content" class="container">
+        <form id="search_form">
+          <div class="form-group">
+            <label for="search">Search Query</label>
+            <input type="text" class="form-control" id="search">
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="submit" class="btn btn-primary" id="local">Search Cloud Jobs (local data)</button>
+        </form>
+        <div class="results" style="display:none">
+          <table id="search_results" class="table" >
+            <thead>
+              <tr>
+                <th scope="col">Published</th>
+                <th scope="col">Title</th>
+                <th scope="col">Company</th>
+                <th scope="col">Remote?</th>
+                <th scope="col">Locations</th>
+                <th scope="col">Link</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination justify-content-center">
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="footer">
+        <h3>Powered by:</h2>
+        <div>
+          <a href="https://itjobs.pt"><img src='https://static.itjobs.pt/images/logo.png'></a>
+        </div>
+      </div>
+
+    </div>
+    <script src="/vendor/jquery/jquery-3.5.1.slim.min.js" ></script>
+    <script src="/vendor/bootstrap-4.5.0-dist/js/bootstrap.min.js" ></script>
+    <script src="/vendor/axios/axios.min.js" ></script>
+    <script src="/vendor/moment/moment.min.js" ></script>
+    <script src="js/main.js"> </script>
+  </body>
+</html>

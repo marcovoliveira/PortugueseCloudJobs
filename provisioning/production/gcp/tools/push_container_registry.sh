@@ -1,0 +1,30 @@
+#!/bin/bash
+
+VERSION="1.09"
+
+FRONTEND_IMAGE="cloudjobs-frontend:$VERSION"
+SERVICE_IMAGE_AUTHENTICATION="cloudjobs-auth-service:$VERSION"
+SERVICE_IMAGE_KEYWORDS="cloudjobs-keywords-service:$VERSION"
+SERVICE_IMAGE_AGENDA="cloudjobs-agenda-service:$VERSION"
+SERVICE_IMAGE_SEARCH="cloudjobs-search-service:$VERSION"
+SERVICE_IMAGE_STATISTICS="cloudjobs-statistics-service:$VERSION"
+
+GCP_PROJECT_ID="cloudjobs"
+
+echo "Pushing images to GCP Container Registry"
+
+echo "Pushing Frontend"
+docker tag $FRONTEND_IMAGE "gcr.io/$GCP_PROJECT_ID/$FRONTEND_IMAGE"
+docker push "gcr.io/$GCP_PROJECT_ID/$FRONTEND_IMAGE"
+
+echo "Pushing Services"
+docker tag $SERVICE_IMAGE_AUTHENTICATION "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_AUTHENTICATION"
+docker push "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_AUTHENTICATION"
+docker tag $SERVICE_IMAGE_KEYWORDS "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_KEYWORDS"
+docker push "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_KEYWORDS"
+docker tag $SERVICE_IMAGE_AGENDA "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_AGENDA"
+docker push "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_AGENDA"
+docker tag $SERVICE_IMAGE_SEARCH "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_SEARCH"
+docker push "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_SEARCH"
+docker tag $SERVICE_IMAGE_STATISTICS "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_STATISTICS"
+docker push "gcr.io/$GCP_PROJECT_ID/$SERVICE_IMAGE_STATISTICS"
